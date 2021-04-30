@@ -1,6 +1,9 @@
 void setup()
 {
-  DDRB = DDRB | B10000000;
+  DDRB = B10000000;
+  
+  //Serial.begin(9600);
+  //Serial.println(DDRB);
   // Data Direction Register B: Inputs 0-6, Output 7
 }
 void loop()
@@ -18,18 +21,19 @@ void loop()
    * el input esta apagado y de 0.5Hz si esta prendido 
    * 
    * tiempo son tres loops anidado que gastan 255*255*45 operaciones 
-   */
-  asm (
+  */
+   asm (
     "inicio: \n\t"
     "sbi 0x05,0x07 \n\t"
-    "sbis 0x05, 0x06 \n\t"
+    "sbic 0x03,0x06 \n\t"
     "call tiempo \n\t"
     "call tiempo \n\t"
     "cbi 0x05,0x07 \n\t"
-    "sbis 0x05, 0x06 \n\t"
+    "sbic 0x03, 0x06 \n\t"
     "call tiempo \n\t"
     "call tiempo \n\t"
     "jmp main \n\t"
+    
     "tiempo: \n\t"
     "LDI r22, 45 \n\t"
     "LOOP_3: \n\t"

@@ -23,6 +23,4 @@ void loop() {
   digitalWrite(led, LOW);
   if(val == LOW) delay(500);
   else delay(1000);
-  }
-  //le damos ese estado al led             
-}
+}            

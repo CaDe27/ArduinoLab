@@ -8,34 +8,33 @@
  * 2 - D7
  */
 
-String nombre =   "Carlos  Alberto ";
-String apellido = "Delgado Elizondo ";
-int it1, it2;;
+String nombre =   "Carlos Alberto  ";
+String apellido = "Delgado Elizondo";
+int pos, colIni;
 LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
 void setup() {
   lcd.begin(16, 2); // set up the LCD's number of columns and rows:
-  it1 = it2 = 0;
   Serial.begin(9600);
-
-  
+  colIni = 16;
 }
 
 void loop() {
-
-  lcd.setCursor(15, 0);
+  
+  lcd.setCursor(colIni, 0);
   lcd.print(nombre);
-  lcd.setCursor(15, 1);
+  lcd.setCursor(colIni, 1);
   lcd.print(apellido);
-  it1 = 0;
-  while(it1 < 15){
+  pos = colIni;
+  while(pos != 0){
     lcd.scrollDisplayLeft();
     delay(500);
-    ++it1;
+    --pos;
   }
 
   delay(1000);
 
   lcd.clear();
+  
   
   
   
